@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="d-flex justify-content-center align-items-center" style="height:80vh;">
+
+    <div class="card shadow text-center" style="width: 450px; border-radius:15px; padding:30px;">
+
+        <!-- Icon -->
+        <div class="mb-3">
+            <i class="bi bi-exclamation-triangle-fill text-danger" style="font-size:60px;"></i>
+        </div>
+
+        <!-- Error Title -->
+        <h3 class="text-danger mb-2">
+            {{ error_title or "Something went wrong!" }}
+        </h3>
+
+        <!-- Error Message -->
+        <p class="text-muted">
+            {{ error_message or "An unexpected error occurred. Please try again later." }}
+        </p>
+
+        <hr>
+
+        <!-- Buttons -->
+        <div class="mt-4">
+
+            <a href="/dashboard" class="btn btn-primary w-100 mb-2">
+                Go to Dashboard
+            </a>
+
+            <a href="/" class="btn btn-outline-secondary w-100">
+                Go to Home
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

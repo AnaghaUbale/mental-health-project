@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title or "User Panel - NeuroSense" }}</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: linear-gradient(135deg,#667eea,#764ba2);
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background: #1f1f2e;
+        }
+
+        .sidebar {
+            height: 100vh;
+            background: #1f1f2e;
+            color: white;
+            position: fixed;
+            width: 220px;
+            padding-top: 20px;
+        }
+
+        .sidebar a {
+            color: #bbb;
+            display: block;
+            padding: 10px 20px;
+            margin: 5px 10px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: #6c63ff;
+            color: white;
+        }
+
+        .main-content {
+            margin-left: 230px;
+            padding: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <a class="navbar-brand text-white" href="/dashboard">NeuroSense 🧠</a>
+    </div>
+</nav>
+
+<!-- Sidebar -->
+<div class="sidebar">
+
+    <h5 class="text-center mb-3">User Panel</h5>
+
+    <a href="/dashboard"><i class="bi bi-speedometer2"></i> Dashboard</a>
+    <a href="/start_test"><i class="bi bi-play-circle"></i> Start Test</a>
+    <a href="/textmining"><i class="bi bi-pencil-square"></i> Text Analysis</a>
+    <a href="/chatbot"><i class="bi bi-chat-dots"></i> Chatbot</a>
+    <a href="/history"><i class="bi bi-clock-history"></i> History</a>
+    <a href="/analytics"><i class="bi bi-bar-chart-line"></i> Analytics</a>
+    <a href="/recommendations"><i class="bi bi-lightbulb"></i> Recommendations</a>
+    <a href="/doctors"><i class="bi bi-person-heart"></i> Doctors</a>
+    <a href="/booking-history"><i class="bi bi-calendar-check"></i> Appointments</a>
+    <a href="/logout"><i class="bi bi-box-arrow-right"></i> Logout</a>
+
+</div>
+
+<!-- Main Content -->
+<div class="main-content">
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="alert alert-{{category}}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+    <!-- Page Content -->
+    {% block content %}{% endblock %}
+
+</div>
+
+</body>
+</html>

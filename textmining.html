@@ -1,0 +1,49 @@
+{% extends "test_layout.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-8">
+
+            <div class="card shadow" style="border-radius:15px; padding:30px;">
+
+                <h3 class="text-center mb-3">Text Analysis 📝</h3>
+
+                <p class="text-center text-muted">
+                    Enter your thoughts or feelings below. Our AI will analyze your emotional state.
+                </p>
+
+                <form method="POST">
+
+                    <!-- Text Input -->
+                    <div class="mb-4">
+                        <label class="form-label"><strong>Your Text</strong></label>
+                        <textarea name="user_text" class="form-control" rows="6"
+                                  placeholder="Write how you feel..." required></textarea>
+                    </div>
+
+                    <!-- Submit -->
+                    <button type="submit" class="btn btn-primary w-100">
+                        Analyze Text
+                    </button>
+
+                </form>
+
+                <!-- Navigation -->
+                <div class="text-center mt-3">
+                    <a href="/start_test" class="me-3">← Back to Test</a>
+                    <a href="/dashboard">Dashboard</a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

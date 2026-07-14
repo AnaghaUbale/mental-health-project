@@ -1,0 +1,83 @@
+{% extends "test_layout.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h2 class="text-white text-center mb-4">
+        Personalized Recommendations 💡
+    </h2>
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-10">
+
+            <div class="card shadow" style="border-radius:15px; padding:25px;">
+
+                <!-- RISK -->
+                <h4 class="mb-3">Your Current Status:</h4>
+
+                <p>
+                    <strong>Risk Level:</strong>
+                    <span class="badge 
+                        {% if risk == 'High Risk' %}bg-danger
+                        {% elif risk == 'Moderate Risk' %}bg-warning text-dark
+                        {% else %}bg-success{% endif %}">
+                        {{ risk }}
+                    </span>
+                </p>
+
+                <hr>
+
+                <!-- BOOKS -->
+                <h5 class="mb-3">📚 Recommended Books</h5>
+                <ul class="list-group mb-4">
+                    {% for b in books %}
+                    <li class="list-group-item">
+                        {{ b }}
+                    </li>
+                    {% endfor %}
+                </ul>
+
+                <!-- SONGS -->
+                <h5 class="mb-3">🎵 Relaxing Music</h5>
+                <ul class="list-group mb-4">
+                    {% for s in songs %}
+                    <li class="list-group-item">
+                        {{ s }}
+                    </li>
+                    {% endfor %}
+                </ul>
+
+                <!-- VIDEOS -->
+                <h5 class="mb-3">🎥 Helpful Videos</h5>
+                <ul class="list-group mb-4">
+                    {% for v in videos %}
+                    <li class="list-group-item">
+                        {{ v }}
+                    </li>
+                    {% endfor %}
+                </ul>
+
+                <!-- ACTION BUTTONS -->
+                <div class="text-center mt-4">
+
+                    <a href="/start_test" class="btn btn-primary me-2">
+                        Take Test Again
+                    </a>
+
+                    <a href="/doctors" class="btn btn-danger">
+                        Consult Doctor
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

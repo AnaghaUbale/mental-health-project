@@ -1,0 +1,60 @@
+{% extends "test_layout.html" %}
+
+{% block content %}
+
+<div class="container text-center mt-5">
+
+    <div class="card shadow p-4 mx-auto" style="max-width:500px; border-radius:15px;">
+
+        <h3 class="mb-3">Voice Analysis 🎤</h3>
+        <p>Record your voice. AI will analyze your emotions.</p>
+
+        <button id="recordBtn" class="btn btn-danger mb-3">
+            Start Recording
+        </button>
+
+        <form method="POST">
+            <input type="hidden" name="audio_data" id="audioData">
+            <button type="submit" class="btn btn-primary">
+                Analyze Voice
+            </button>
+        </form>
+
+    </div>
+
+</div>
+
+<script>
+let recorder;
+let audioChunks = [];
+
+document.getElementById("recordBtn").onclick = async () => {
+
+    if (!recorder) {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        recorder = new MediaRecorder(stream);
+
+        recorder.ondataavailable = e => audioChunks.push(e.data);
+
+        recorder.onstop = () => {
+            const blob = new Blob(audioChunks, { type: "audio/webm" });
+            const reader = new FileReader();
+
+            reader.onloadend = () => {
+                document.getElementById("audioData").value = reader.result;
+            };
+
+            reader.readAsDataURL(blob);
+        };
+
+        recorder.start();
+        document.getElementById("recordBtn").innerText = "Stop Recording";
+
+    } else {
+        recorder.stop();
+        document.getElementById("recordBtn").innerText = "Recorded ✔";
+    }
+};
+</script>
+
+{% endblock %}

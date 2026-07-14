@@ -1,0 +1,65 @@
+{% extends "userlayout.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-6">
+
+            <div class="card shadow" style="border-radius:15px; padding:30px;">
+
+                <h3 class="text-center mb-4">My Profile 👤</h3>
+
+                <form method="POST">
+
+                    <!-- Name -->
+                    <div class="mb-3">
+                        <label class="form-label"><strong>Name</strong></label>
+                        <input type="text" name="name" class="form-control"
+                               value="{{ user.name }}" required>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="mb-3">
+                        <label class="form-label"><strong>Email</strong></label>
+                        <input type="email" class="form-control"
+                               value="{{ user.email }}" readonly>
+                    </div>
+
+                    <!-- Role -->
+                    <div class="mb-3">
+                        <label class="form-label"><strong>Role</strong></label>
+                        <input type="text" class="form-control"
+                               value="{{ user.role }}" readonly>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="mb-3">
+                        <label class="form-label"><strong>New Password</strong></label>
+                        <input type="password" name="password" class="form-control"
+                               placeholder="Leave blank to keep current password">
+                    </div>
+
+                    <!-- Submit -->
+                    <button type="submit" class="btn btn-primary w-100">
+                        Update Profile
+                    </button>
+
+                </form>
+
+                <!-- Navigation -->
+                <div class="text-center mt-3">
+                    <a href="/dashboard">← Back to Dashboard</a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

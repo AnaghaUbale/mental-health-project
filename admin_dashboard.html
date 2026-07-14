@@ -1,0 +1,108 @@
+{% extends "test_layout.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <!-- Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-white">Admin Dashboard 👨‍💼</h2>
+
+        <!-- Logout Button -->
+        <a href="/logout" class="btn btn-danger">
+            <i class="bi bi-box-arrow-right"></i> Logout
+        </a>
+    </div>
+
+    <!-- Top Stats -->
+    <div class="row mb-4">
+
+        <div class="col-md-4">
+            <div class="card text-center shadow p-3" style="border-radius:15px;">
+                <h5>Total Patients</h5>
+                <h3>{{ total_users }}</h3>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card text-center shadow p-3" style="border-radius:15px;">
+                <h5>Total Doctors</h5>
+                <h3>{{ total_doctors }}</h3>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card text-center shadow p-3" style="border-radius:15px;">
+                <h5>Total Bookings</h5>
+                <h3>{{ total_bookings }}</h3>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Add Doctor Button -->
+    <div class="mb-3 text-end">
+        <a href="/add-doctor" class="btn btn-success">
+            <i class="bi bi-person-plus"></i> Add Doctor
+        </a>
+    </div>
+
+    <!-- Doctors Table -->
+    <div class="card shadow p-4" style="border-radius:15px;">
+
+        <h4 class="mb-3">Doctors Management</h4>
+
+        {% if doctors %}
+        <div class="table-responsive">
+
+            <table class="table table-bordered text-center align-middle">
+
+                <thead class="table-dark">
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Specialization</th>
+                        <th>Experience</th>
+                        <th>Fees (₹)</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for d in doctors %}
+                    <tr>
+                        <td>{{ d[1] }}</td>
+                        <td>{{ d[2] }}</td>
+                        <td>{{ d[3] }}</td>
+                        <td>{{ d[4] }} yrs</td>
+                        <td>{{ d[5] }}</td>
+
+                        <td>
+                            <a href="/edit-doctor/{{ d[0] }}" 
+                               class="btn btn-warning btn-sm">
+                                Edit
+                            </a>
+
+                            <a href="/delete-doctor/{{ d[0] }}" 
+                               class="btn btn-danger btn-sm"
+                               onclick="return confirm('Are you sure?')">
+                                Delete
+                            </a>
+                        </td>
+
+                    </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+
+        </div>
+        {% else %}
+            <p class="text-center">No doctors available.</p>
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}

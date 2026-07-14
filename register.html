@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="d-flex justify-content-center align-items-center" style="height:90vh;">
+
+    <div class="card shadow" style="width: 450px; border-radius:15px; padding:25px;">
+
+        <h3 class="text-center mb-3">Create Account</h3>
+        <p class="text-center text-muted mb-4">Register as a Patient</p>
+
+        <form method="POST">
+
+            <!-- Name -->
+            <div class="mb-3">
+                <label class="form-label">Full Name</label>
+                <input type="text" name="full_name" class="form-control" placeholder="Enter your full name" required>
+            </div>
+
+            <!-- Email -->
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" name="email" class="form-control" placeholder="Enter your email" required>
+            </div>
+
+            <!-- Password -->
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+                <input type="password" name="password" class="form-control" placeholder="Create a password" required>
+            </div>
+
+            <!-- Hidden Role (always patient) -->
+            <input type="hidden" name="role" value="patient">
+
+            <button type="submit" class="btn btn-primary w-100">
+                Register
+            </button>
+
+        </form>
+
+        <div class="text-center mt-3">
+            <small>Already have an account?</small><br>
+            <a href="/login">Login here</a>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

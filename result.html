@@ -1,0 +1,72 @@
+{% extends "test_layout.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-md-8">
+
+            <div class="card shadow text-center" style="border-radius:15px; padding:30px;">
+
+                <h2 class="mb-4">Your Analysis Result 🧠</h2>
+
+                <!-- Risk Level -->
+                <div class="mb-3">
+                    <h4>Risk Level</h4>
+
+                    <span class="badge 
+                        {% if alert_type == 'danger' %}bg-danger
+                        {% elif alert_type == 'warning' %}bg-warning text-dark
+                        {% else %}bg-success{% endif %}
+                        p-3 fs-5">
+
+                        {{ final_result }}
+
+                    </span>
+                </div>
+
+                <!-- Score -->
+                <div class="mb-4">
+                    <h5>Your Score</h5>
+                    <h3>{{ score }}%</h3>
+                </div>
+
+                <hr>
+
+                <!-- Advice -->
+                <div class="mb-4">
+                    <h5>Advice</h5>
+                    <p class="text-muted">{{ advice }}</p>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="mt-4">
+                    <a href="/download-report" class="btn btn-dark me-2">
+                        Download Report (PDF)
+                    </a>
+
+                    <a href="/recommendations" class="btn btn-primary me-2">
+                        View Recommendations
+                    </a>
+
+                    <a href="/doctors" class="btn btn-danger me-2">
+                        Consult Doctor
+                    </a>
+
+                    <a href="/dashboard" class="btn btn-secondary">
+                        Back to Dashboard
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,112 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+    <div class="card shadow p-4 text-center" style="max-width:600px;margin:auto;border-radius:15px;">
+
+        <h3>Video Analysis 🎥</h3>
+        <p>Record your facial expressions for AI analysis.</p>
+
+        <!-- 🎥 Video Preview -->
+        <video id="preview" autoplay muted style="width:100%; border-radius:10px;"></video>
+
+        <!-- 🔴 Recording Status -->
+        <div class="mt-3">
+            <span id="status" class="badge bg-secondary">Not Recording</span>
+            <span id="timer" class="ms-2 text-muted"></span>
+        </div>
+
+        <form method="POST">
+            <input type="hidden" name="video_data" id="video_data">
+
+            <button type="button" class="btn btn-success mt-3" onclick="startRecording()">
+                Start Recording
+            </button>
+
+            <button type="button" class="btn btn-danger mt-3" onclick="stopRecording()">
+                Stop Recording
+            </button>
+
+            <button type="submit" class="btn btn-primary mt-3">
+                Analyze Video
+            </button>
+        </form>
+
+    </div>
+
+</div>
+
+<script>
+let mediaRecorder;
+let chunks = [];
+let timerInterval;
+let seconds = 0;
+
+navigator.mediaDevices.getUserMedia({
+    video: {
+        width: { ideal: 320 },
+        height: { ideal: 240 },
+        frameRate: { ideal: 10, max: 15 }
+    },
+    audio: false
+})
+.then(stream => {
+    document.getElementById("preview").srcObject = stream;
+
+    mediaRecorder = new MediaRecorder(stream, {
+    mimeType: 'video/webm;codecs=vp8',
+    videoBitsPerSecond: 300000
+});
+
+    mediaRecorder.ondataavailable = e => {
+        chunks.push(e.data);
+    };
+
+    mediaRecorder.onstop = () => {
+        const blob = new Blob(chunks, { type: 'video/webm; codecs=vp8' });
+        chunks = [];
+
+        const reader = new FileReader();
+        reader.readAsDataURL(blob);
+
+        reader.onloadend = () => {
+            document.getElementById("video_data").value = reader.result;
+        };
+    };
+});
+
+function startRecording(){
+    chunks = [];
+    mediaRecorder.start();
+
+    document.getElementById("status").innerText = "Recording...";
+    document.getElementById("status").className = "badge bg-danger";
+
+    seconds = 0;
+    timerInterval = setInterval(() => {
+        seconds++;
+        document.getElementById("timer").innerText = "⏱ " + seconds + " sec";
+
+        // 🔥 AUTO STOP AFTER 5 SECONDS
+        if(seconds >= 5){
+            stopRecording();
+        }
+
+    }, 1000);
+}
+
+function stopRecording(){
+    mediaRecorder.stop();
+
+    // 🟢 Update UI
+    document.getElementById("status").innerText = "Recording Stopped";
+    document.getElementById("status").className = "badge bg-success";
+
+    // ⏹ Stop Timer
+    clearInterval(timerInterval);
+}
+</script>
+
+{% endblock %}

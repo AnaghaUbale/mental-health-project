@@ -1,0 +1,59 @@
+{% extends "test_layout.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h2 class="text-white mb-4">Edit Doctor 👨‍⚕️</h2>
+
+    <div class="card shadow p-4" style="border-radius:15px; max-width:600px; margin:auto;">
+
+        <form method="POST">
+
+            <div class="mb-3">
+                <label class="form-label">Full Name</label>
+                <input type="text" name="full_name" class="form-control"
+                       value="{{ doctor[1] }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" name="email" class="form-control"
+                       value="{{ doctor[2] }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Specialization</label>
+                <input type="text" name="specialization" class="form-control"
+                       value="{{ doctor[3] }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Experience (years)</label>
+                <input type="number" name="experience" class="form-control"
+                       value="{{ doctor[4] }}" required>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Fees (₹)</label>
+                <input type="number" name="fees" class="form-control"
+                       value="{{ doctor[5] }}" required>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-success">
+                    Update Doctor
+                </button>
+
+                <a href="/admin_dashboard" class="btn btn-secondary">
+                    Cancel
+                </a>
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

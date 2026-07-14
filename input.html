@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Start Test - NeuroSense</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: linear-gradient(135deg,#667eea,#764ba2);
+        }
+
+        .container-box {
+            margin-top: 40px;
+        }
+
+        .card {
+            border-radius: 15px;
+            padding: 25px;
+        }
+
+        textarea {
+            resize: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container container-box">
+
+    <div class="card shadow">
+
+        <h3 class="text-center mb-4">Mental Health Test</h3>
+
+        <p class="text-center text-muted">
+            Please provide your input for accurate analysis.
+        </p>
+
+        <form method="POST" enctype="multipart/form-data">
+
+            <!-- TEXT INPUT -->
+            <div class="mb-4">
+                <label class="form-label"><strong>Text Input</strong></label>
+                <textarea name="text_input" class="form-control" rows="4"
+                          placeholder="Write how you feel..."></textarea>
+            </div>
+
+            <!-- VOICE INPUT -->
+            <div class="mb-4">
+                <label class="form-label"><strong>Voice Input</strong></label>
+                <input type="file" name="voice_input" class="form-control" accept="audio/*">
+            </div>
+
+            <!-- VIDEO INPUT -->
+            <div class="mb-4">
+                <label class="form-label"><strong>Video Input</strong></label>
+                <input type="file" name="video_input" class="form-control" accept="video/*">
+            </div>
+
+            <!-- SUBMIT -->
+            <button type="submit" class="btn btn-primary w-100">
+                Analyze
+            </button>
+
+        </form>
+
+        <!-- Back -->
+        <div class="text-center mt-3">
+            <a href="/dashboard">← Back to Dashboard</a>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

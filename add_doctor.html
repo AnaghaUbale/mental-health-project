@@ -1,0 +1,57 @@
+{% extends "test_layout.html" %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="card shadow p-4" style="border-radius:15px; max-width:600px; margin:auto;">
+
+        <h3 class="text-center mb-4">Add Doctor 👨‍⚕️</h3>
+
+        <form method="POST">
+
+            <div class="mb-3">
+                <label>Full Name</label>
+                <input type="text" name="full_name" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label>Email</label>
+                <input type="email" name="email" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label>Password</label>
+                <input type="password" name="password" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label>Specialization</label>
+                <input type="text" name="specialization" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label>Experience (Years)</label>
+                <input type="number" name="experience" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label>Consultation Fees (₹)</label>
+                <input type="number" name="fees" class="form-control" required>
+            </div>
+
+            <button type="submit" class="btn btn-success w-100">
+                Add Doctor
+            </button>
+
+        </form>
+
+        <div class="text-center mt-3">
+            <a href="/admin_dashboard" class="btn btn-secondary">Back</a>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
