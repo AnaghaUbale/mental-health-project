@@ -1,1 +1,3 @@
-# mental-health-project
+Depression Detection System: 
+The project is developed on the topic depression detection system using Java language. In this project the firstly some questions are asked to user, then audio of user is taken as an input. Then the video interaction of user in done. Based on the answers given by user, voice of user and facial expressions of user it is detected whether the user is in depression or not and its percentage is also given. If user is in depression, then motivational books, psychiatrist contact, motivational video are suggested to the user. And further improvements are undergoing. 
+Technologies: Java, OpenCV, Audio Processing
